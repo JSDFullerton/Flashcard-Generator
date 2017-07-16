@@ -17,7 +17,7 @@ var currentCard;
 // CREATE QUESTIONS USING CONSTRUCTOR FUNCT
 function pullBasicQuestions(front, back) {
 
-	for (var i = 0; i < basicQuestions.length; i++) {
+	for (var i = 0; i < basicQuestion.length; i++) {
 
 
 		// Pull Question Objects + Arguments form Basic JSON File
@@ -46,7 +46,7 @@ function askQuestions() {
 			{
 				name: "question",
 				type: "input",
-				message: questionArr[0]
+				message: questionArr[i]
 			},
 			
 
@@ -55,7 +55,7 @@ function askQuestions() {
 		
 		// FUNCTION TO EXECUTE AFTR USER INPUT ANSWER TO QUESTION - drop input to lower case
 		.then(function(response) {
-			if(response.question === quest[i].back) {
+			if(response.question === basicQuestions[i].back) {
 				console.log("CORRECT");
 				scoreCount++;
 
@@ -66,6 +66,11 @@ function askQuestions() {
 				scoreCount--;
 
 			}// close ELSE state
+
+			
+
+			// CREATE RECURSION - loop function until end requirement met
+			// (i.e. questionCount === questionArr.length)
 			askQuestions();
 
 		})// close .then func
